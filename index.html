@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#100d1d"><meta name="description" content="XENOR SOUL AI — رفيقك الرقمي">
+<link rel="manifest" href="./manifest.webmanifest"><link rel="icon" href="./icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="./style.css"><title>XENOR SOUL AI</title>
+</head>
+<body>
+<div class="app-shell">
+<header class="topbar">
+  <div class="brand"><div class="brand-mark">XS</div><div><b>XENOR SOUL AI</b><small>رفيقك الرقمي الذكي</small></div></div>
+  <div class="top-actions"><span id="connection" class="status offline">غير متصل</span><button id="settingsBtn" class="icon-btn" aria-label="الإعدادات">⚙</button></div>
+</header>
+<main>
+<section id="home" class="page active">
+  <div class="hero"><div class="eyebrow">YOUR DIGITAL COMPANION</div><h1>مساحة آمنة<br><span>للفهم والتفكير</span></h1><p>اتكلم براحتك. اسأل، خطط، واحتفظ بما تختار تذكره.</p><button class="primary" data-go="chat">ابدأ المحادثة <span>←</span></button></div>
+  <div class="stats"><div><strong id="memoryCount">0</strong><small>ذكرى محفوظة</small></div><div><strong id="messageCount">0</strong><small>رسالة محفوظة</small></div><div><strong id="taskCount">0</strong><small>مهمة</small></div></div>
+  <div class="panel pro-panel"><h3>SOUL PRO</h3><p>صوت تفاعلي · فهم الصور · ملفات نصية · ذاكرة ومهام سحابية · ملف شخصي</p><div class="pro-pills"><span>AI CORE</span><span>VISION</span><span>MEMORY</span><span>VOICE</span></div></div>
+  <div class="section-head"><h2>مساحتك</h2><span>تحكمك أولاً</span></div>
+  <div class="tiles"><button class="tile" data-go="memory"><i>✦</i><b>ذاكرتي</b><small>إضافة ومراجعة وحذف</small></button><button class="tile" data-go="tasks"><i>◷</i><b>مهامي</b><small>تنظيم أفكارك اليومية</small></button><button class="tile" data-go="profile"><i>◎</i><b>شخصيتي</b><small>تفضيلاتك وطريقة الحديث</small></button><button class="tile" data-go="privacy"><i>⌑</i><b>الخصوصية</b><small>مفاتيحك وبياناتك</small></button></div>
+  <div class="notice"><b>تنبيه مهم</b><p>الذاكرة السحابية اختيارية. لا تحفظ كلمات مرور أو بيانات بنكية أو معلومات شديدة الحساسية.</p></div>
+</section>
+<section id="chat" class="page">
+  <div class="page-title"><div><small>SOUL CONVERSATION</small><h1>المحادثة</h1></div><button id="clearChat" class="ghost">مسح العرض</button></div>
+  <div id="chatLog" class="chat-log"><div class="bubble assistant">أهلاً بيك. أنا XENOR SOUL AI. اربط الـ Worker من الإعدادات عشان أقدر أستخدم الذكاء الاصطناعي والذاكرة السحابية. لحد وقتها، تقدر تكتب ملاحظاتك محليًا.</div></div>
+  <div id="attachmentPreview" class="attachment-preview"></div>
+  <div class="composer"><textarea id="messageInput" rows="1" placeholder="اكتب اللي في بالك..." maxlength="4000"></textarea><button id="voiceBtn" class="round" title="إملاء صوتي">🎙</button><button id="liveVoiceBtn" class="round" title="بدء/إيقاف الصوت المباشر">◉</button><label class="round file-pick" title="إرفاق صورة أو ملف نصي">＋<input id="fileInput" type="file" accept="image/*,.txt,.md,.csv" hidden></label><button id="sendBtn" class="send">➤</button></div>
+  <div class="chat-hint">الصوت المباشر يعمل أثناء فتح التطبيق فقط. الصور والملفات تُرسل عند اختيارك.</div>
+</section>
+<section id="memory" class="page">
+  <div class="page-title"><div><small>SOUL MEMORY</small><h1>ذاكرتي</h1></div><span class="cloud-tag">سحابية اختيارية</span></div>
+  <div class="panel"><label for="memoryInput">أضف معلومة تريد أن أتذكرها</label><textarea id="memoryInput" rows="3" maxlength="1000" placeholder="مثال: أفضل الشرح المختصر والخطوات العملية..."></textarea><div class="inline-form"><select id="memoryCategory"><option value="preference">تفضيل</option><option value="project">مشروع</option><option value="personal">معلومة شخصية</option><option value="goal">هدف</option><option value="other">أخرى</option></select><button id="saveMemory" class="primary">حفظ الذكرى</button></div></div>
+  <div id="memoryList" class="memory-list"><div class="empty">لا توجد ذكريات محمّلة بعد.</div></div>
+</section>
+<section id="tasks" class="page">
+  <div class="page-title"><div><small>PERSONAL SPACE</small><h1>مهامي</h1></div></div>
+  <div class="panel"><label for="taskInput">مهمة جديدة</label><div class="inline-form"><input id="taskInput" maxlength="180" placeholder="اكتب المهمة..."><button id="addTask" class="primary">إضافة</button></div><label for="taskDue" class="sub-label">موعد تذكير اختياري</label><input id="taskDue" type="datetime-local"><button id="notifyPermission" class="ghost full">تفعيل إشعارات هذا الجهاز</button></div>
+  <div id="taskList" class="task-list"></div>
+  <p class="muted">المهام محفوظة على هذا الجهاز فقط في هذه النسخة.</p>
+</section>
+<section id="profile" class="page">
+  <div class="page-title"><div><small>SOUL IDENTITY</small><h1>شخصيتي وتفضيلاتي</h1></div></div>
+  <div class="panel"><label for="displayName">تحب أناديك بإيه؟</label><input id="displayName" maxlength="50" placeholder="اسم أو لقب اختياري"><label for="personaStyle" class="sub-label">أسلوب المساعد</label><select id="personaStyle"><option value="egyptian">مصري ودود</option><option value="professional">احترافي مباشر</option><option value="calm">هادئ ومتأني</option><option value="creative">إبداعي ومشجع</option></select><label for="aboutYou" class="sub-label">معلومات عامة تختار مشاركتها</label><textarea id="aboutYou" rows="3" maxlength="800" placeholder="اهتماماتك أو أهدافك العامة..."></textarea><button id="saveProfile" class="primary full">حفظ تفضيلاتي</button></div>
+  <div class="panel"><h3>إجراءات الهاتف المسموح بها</h3><p class="muted">V3 يمكنه فتح نافذة المشاركة أو نسخ نص عندما تضغط بنفسك. لا يقرأ رسائلك أو جهات اتصالك ولا يتحكم في الهاتف بالخلفية.</p><button id="shareApp" class="ghost full">مشاركة التطبيق</button></div>
+</section>
+<section id="privacy" class="page">
+  <div class="page-title"><div><small>CONTROL CENTER</small><h1>الخصوصية</h1></div></div>
+  <div class="panel"><h3>حساب الذاكرة السحابية</h3><p class="muted">ينشئ التطبيق معرّفًا عشوائيًا ومفتاح استعادة خاصًا بك. احتفظ بالمفتاح في مكان آمن؛ لا يمكن استرجاعه من الخادم إذا فقدته.</p><div class="key-row"><span>حالة الحساب</span><b id="accountState">لم يتم الربط</b></div><button id="showRecovery" class="ghost full">عرض مفتاح الاستعادة</button><button id="exportData" class="ghost full">تصدير بياناتي المحلية</button><button id="deleteCloud" class="danger full">حذف حسابي وذكرياتي السحابية</button></div>
+  <div class="panel"><h3>ما الذي يتم تخزينه؟</h3><ul class="privacy-list"><li>المحادثات والذكريات: في D1 عند ربط Worker.</li><li>المهام والإعدادات ومفتاح الاستعادة: على جهازك.</li><li>مفتاح AI يبقى داخل Cloudflare Worker ولا يوضع في التطبيق.</li></ul></div>
+</section>
+<section id="settings" class="page">
+  <div class="page-title"><div><small>CONFIGURATION</small><h1>الإعدادات</h1></div></div>
+  <div class="panel"><label for="apiUrl">رابط Worker API</label><input id="apiUrl" type="url" placeholder="https://your-worker.workers.dev"><small class="muted">ضع رابط Worker بعد نشره. لا تضع أي مفتاح API هنا.</small><button id="connectBtn" class="primary full">حفظ واختبار الاتصال</button><p id="connectResult" class="muted"></p></div>
+  <div class="panel"><h3>الصوت</h3><label class="check"><input type="checkbox" id="speakReplies" checked> قراءة ردود المساعد بصوت الجهاز</label><label class="check"><input type="checkbox" id="autoSendVoice"> إرسال الكلام المتعرف عليه تلقائياً</label><p class="muted">الصوت المباشر يتطلب دعم SpeechRecognition ويعمل فقط أثناء بقاء التطبيق مفتوحاً. معالجة الصوت قد تتم لدى مزود المتصفح.</p></div>
+  <div class="panel"><button id="resetLocal" class="danger full">مسح بيانات هذا الجهاز</button></div>
+</section>
+</main>
+<nav class="bottom-nav"><button class="active" data-go="home"><i>⌂</i><small>الرئيسية</small></button><button data-go="chat"><i>◉</i><small>المحادثة</small></button><button data-go="memory"><i>✦</i><small>الذاكرة</small></button><button data-go="tasks"><i>☷</i><small>المهام</small></button><button data-go="profile"><i>◎</i><small>شخصيتي</small></button></nav>
+</div>
+<div id="toast" class="toast" role="status"></div>
+<script src="./app.js"></script>
+</body></html>
